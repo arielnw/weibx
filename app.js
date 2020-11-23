@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes')
+const PORT = process.env.PORT || 3000
 
 
 const app = express();
@@ -11,9 +12,9 @@ const dbURI = 'mongodb+srv://dev:test123@weibx.yqtoc.mongodb.net/blogs-weibx?ret
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then((result) => {
 		console.log('connected to db')
-		// app.listen(3000, () => {
-		// 	console.log('app listen on http://localhost:3000')
-		// });
+		app.listen(PORT, () => {
+			console.log('app listen on http://localhost:3000')
+		});
 	})
 	.catch((err) => console.log(err))
 
@@ -40,4 +41,4 @@ app.use((req, res) => {
 	res.status(404).render('404',  { title: 'Not Found' })
 })
 
-module.exports = app
+// module.exports = app
