@@ -1,6 +1,6 @@
-const Blog = require('../models/blog')
+const Blog = require('../models/course')
 
-const blog_index = (req, res) => {
+const course_index = (req, res) => {
   Blog.find().sort({
       createdAt: -1
     })
@@ -15,7 +15,7 @@ const blog_index = (req, res) => {
     })
 }
 
-const blog_details = (req, res) => {
+const course_details = (req, res) => {
   const id = req.params.id
   Blog.findById(id)
     .then((result) => {
@@ -29,13 +29,13 @@ const blog_details = (req, res) => {
     })
 }
 
-const blog_create_get = (req, res) => {
+const course_create_get = (req, res) => {
   res.render('blogs/create', {
     title: 'Create Blog'
   });
 }
 
-const blog_create_post = (req, res) => {
+const course_create_post = (req, res) => {
   const blog = new Blog(req.body)
 
   blog.save()
@@ -47,7 +47,7 @@ const blog_create_post = (req, res) => {
     })
 }
 
-const blog_delete = (req, res) => {
+const course_delete = (req, res) => {
   const id = req.params.id
 
   Blog.findByIdAndDelete(id)
@@ -62,9 +62,9 @@ const blog_delete = (req, res) => {
 }
 
 module.exports = {
-  blog_index,
-  blog_details,
-  blog_create_get,
-  blog_create_post,
-  blog_delete
+  course_index,
+  course_details,
+  course_create_get,
+  course_create_post,
+  course_delete
 }
